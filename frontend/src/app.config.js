@@ -1,7 +1,7 @@
 export default defineAppConfig({
   pages: [
     'pages/index/index',
-    'pages/mine/mine'
+    'pages/me/profile'
   ],
   window: {
     backgroundTextStyle: 'dark',
@@ -18,10 +18,10 @@ export default defineAppConfig({
         selectedIconPath: './assets/images/tab_trend_s.png'
       },
       {
-        pagePath: 'pages/mine/mine',
+        pagePath: 'pages/me/profile',
         text: 'Me',
-        iconPath: './assets/images/tab_news.png',
-        selectedIconPath: './assets/images/tab_news_s.png'
+        iconPath: './assets/images/tab_me.png',
+        selectedIconPath: './assets/images/tab_me_s.png'
       }
     ],
     color: '#8a8a8a',

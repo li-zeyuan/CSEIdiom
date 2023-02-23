@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { View, Text } from '@tarojs/components'
-import './mine.less'
+import './profile.less'
 
 export default class Mine extends Component {
 

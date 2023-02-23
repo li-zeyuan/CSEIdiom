@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: 'Studying',
+  navigationBarTitleText: 'Me',
   enablePullDownRefresh: true
 })

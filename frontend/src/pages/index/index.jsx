@@ -1,6 +1,10 @@
-import { Component } from 'react'
+import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import './index.less'
+import { AtButton } from 'taro-ui'
+import { IButton } from './button'
+import { Idiom } from './idiom'
+
+import './index.scss'
 
 export default class Index extends Component {
 
@@ -14,10 +18,20 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  config = {
+    navigationBarTitleText: '复习'
+  }
+
+  handleButClick() {
+    console.log('no click')
+  }
+
   render () {
     return (
       <View className='index'>
-        <Text>Hellod world!</Text>
+        <AtButton type='primary'>按钮文案</AtButton>
+        <Idiom />
+        <IButton onClick={this.handleButClick} />
       </View>
     )
   }

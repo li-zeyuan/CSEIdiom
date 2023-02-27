@@ -1,16 +1,21 @@
 package config
 
 import (
-	"github.com/li-zeyuan/common/mylogger"
-	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
+
+	"github.com/li-zeyuan/common/mylogger"
+	"github.com/li-zeyuan/common/mysqlstore"
+	"gopkg.in/yaml.v3"
 )
 
 var AppCfg *Config
 
 type Config struct {
 	ListenAddress string             `yaml:"listen_address"`
+	AppId         string             `yaml:"app_id"`
+	Secret        string             `yaml:"secret"`
+	Mysql         mysqlstore.Config  `yaml:"mysql"`
 	Logging       mylogger.LoggerCfg `yaml:"logging"`
 }
 

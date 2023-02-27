@@ -1,4 +1,4 @@
-package app
+package cmd
 
 import (
 	"log"
@@ -10,6 +10,7 @@ import (
 	"github.com/li-zeyuan/CSEIdiom/backend/config"
 	"github.com/li-zeyuan/CSEIdiom/backend/router"
 	"github.com/li-zeyuan/common/mylogger"
+	"github.com/li-zeyuan/common/mysqlstore"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )
@@ -42,6 +43,12 @@ func run(cmd *cobra.Command, args []string) {
 		return
 	}
 
+	err = mysqlstore.New(&config.AppCfg.Mysql)
+	if err != nil {
+		log.Fatal("init mysql error: ", err)
+		return
+	}
+
 	go func() {
 		mylogger.Info("government_exam server listen address", zap.String("address", config.AppCfg.ListenAddress))
 		s := &http.Server{
@@ -65,6 +72,8 @@ func run(cmd *cobra.Command, args []string) {
 	for {
 		select {
 		case <-sigChan:
+			mysqlstore.Close()
+
 			mylogger.Info("Received SIGTERM, gracefully exit...")
 			return
 		}

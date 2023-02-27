@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/li-zeyuan/CSEIdiom/backend/app"
+	"github.com/li-zeyuan/CSEIdiom/backend/cmd"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )
@@ -16,7 +16,7 @@ func main() {
 		Short: serverName,
 		Long:  "GovernmentExam project server",
 	}
-	rootCmd.AddCommand(app.NewCmd())
+	rootCmd.AddCommand(cmd.NewCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatal("cmd execute error", zap.Error(err))

@@ -39,6 +39,8 @@ func LoadConfigFile(cfgPath string) error {
 		return err
 	}
 
+	AppCfg = cfg
+
 	return nil
 }
 

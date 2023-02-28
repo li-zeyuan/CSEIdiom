@@ -7,6 +7,7 @@ import (
 	"github.com/li-zeyuan/CSEIdiom/backend/config"
 	"github.com/li-zeyuan/CSEIdiom/backend/dao"
 	"github.com/li-zeyuan/common/external"
+	"github.com/li-zeyuan/common/httptransfer"
 	"github.com/li-zeyuan/common/model"
 	"github.com/li-zeyuan/common/sequence"
 	"github.com/li-zeyuan/common/utils"
@@ -24,10 +25,14 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return "", err
 	}
+	if userProfile.DeletedAt != 0 {
+		return "", httptransfer.ErrorLoginForbid
+	}
+	// todo
 	if err == gorm.ErrRecordNotFound {
 		userProfile = new(model.UserProfileTable)
-		userProfile.Uid = sequence.NewID()
-		userProfile.Name = fmt.Sprintf("husband_%d", userProfile.Uid%1000000)
+		userProfile.ID = sequence.NewID()
+		userProfile.Name = fmt.Sprintf("husband_%d", userProfile.ID%1000000)
 		userProfile.Openid = wxSession.OpenId
 		userProfile.SessionKey = wxSession.SessionKey
 		err = dao.D.User.Save([]*model.UserProfileTable{userProfile})
@@ -36,7 +41,7 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 		}
 	}
 
-	token, err := utils.GenerateToken(userProfile.Uid, utils.RoleUser, time.Hour*24*30)
+	token, err := utils.GenerateToken(userProfile.ID, utils.RoleUser, time.Hour*24*30)
 	if err != nil {
 		return "", err
 	}

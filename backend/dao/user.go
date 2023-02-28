@@ -13,7 +13,6 @@ func (u *User) GetByOpenid(openid string) (*model.UserProfileTable, error) {
 	m := new(model.UserProfileTable)
 	err := mysqlstore.Db.Table(model.TableNameUserProfile).
 		Where("openid = ?", openid).
-		Where("deleted_at is null").
 		First(m).Error
 	if err != nil {
 		mylogger.Error("get user by openid error: ", zap.Error(err))

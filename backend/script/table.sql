@@ -8,7 +8,7 @@ create table if not exists user_profile
     gender             tinyint      not null default 0,
     portrait           varchar(255) not null default '',
     openid             varchar(128) not null default '',
-    sessionKey         varchar(128) not null default '',
+    session_key         varchar(128) not null default '',
     current_subject_id bigint       not null default 0,
     study_total        int          not null default 0,
     unique (openid)

@@ -25,10 +25,9 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return "", err
 	}
-	if userProfile.DeletedAt != 0 {
+	if userProfile != nil && userProfile.DeletedAt != 0 {
 		return "", httptransfer.ErrorLoginForbid
 	}
-	// todo
 	if err == gorm.ErrRecordNotFound {
 		userProfile = new(model.UserProfileTable)
 		userProfile.ID = sequence.NewID()
@@ -41,7 +40,8 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 		}
 	}
 
-	token, err := utils.GenerateToken(userProfile.ID, utils.RoleUser, time.Hour*24*30)
+	// todo redis token
+	token, err := utils.GenerateToken(userProfile.ID, time.Hour*24*30)
 	if err != nil {
 		return "", err
 	}

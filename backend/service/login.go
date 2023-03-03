@@ -15,7 +15,7 @@ import (
 )
 
 func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
-	wx := external.NewWechat(config.AppCfg.AppId, config.AppCfg.Secret)
+	wx := external.NewWechat(config.AppCfg.WxAppId, config.AppCfg.WxSecret)
 	wxSession, err := wx.QueryWxSession(req.Code)
 	if err != nil {
 		return "", err
@@ -41,7 +41,7 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 	}
 
 	// todo redis token
-	token, err := utils.GenerateToken(userProfile.ID, time.Hour*24*30)
+	token, err := utils.GenerateToken(userProfile.ID, time.Hour*24*30, config.AppCfg.JwtSecret)
 	if err != nil {
 		return "", err
 	}

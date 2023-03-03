@@ -13,8 +13,10 @@ var AppCfg *Config
 
 type Config struct {
 	ListenAddress string             `yaml:"listen_address"`
-	AppId         string             `yaml:"app_id"`
-	Secret        string             `yaml:"secret"`
+	Timeout       int                `yaml:"timeout"`
+	JwtSecret     string             `yaml:"jwt_secret"`
+	WxAppId       string             `yaml:"wx_app_id"`
+	WxSecret      string             `yaml:"wx_secret"`
 	Mysql         mysqlstore.Config  `yaml:"mysql"`
 	Logging       mylogger.LoggerCfg `yaml:"logging"`
 }
@@ -45,6 +47,7 @@ func LoadConfigFile(cfgPath string) error {
 }
 
 func withDefaultCfg(cfg Config) *Config {
+	cfg.Timeout = 3
 	log.Println("tracing_query with default config: ", cfg)
 	return &cfg
 }

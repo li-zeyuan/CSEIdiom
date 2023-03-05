@@ -1,4 +1,4 @@
-import  { Component } from '@tarojs/taro'
+import { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { IButton } from './button'
 import { Idiom } from './idiom'
@@ -32,6 +32,7 @@ export default class Index extends Component {
       <View className='index'>
         <Idiom />
         <IButton onClick={this.handleButClick} />
+        {/* // todo */}
         <Login />
       </View>
     )

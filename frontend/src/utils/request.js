@@ -31,7 +31,7 @@ export default function request(method, url, data) {
             url: apiHost,
             data: method == 'post' ? data : {},
             header: { 'Authorization': token },
-            success: function(res) {
+            success: function (res) {
                 if (config.skipToLoginCode.includes(res.code)) {
                     Taro.reLaunch({
                         url: '/pages/login/login',
@@ -40,7 +40,7 @@ export default function request(method, url, data) {
 
                 resolve(res)
             },
-            fail: function(res) {
+            fail: function (res) {
                 reject(res)
             }
         })

@@ -68,7 +68,7 @@ export class Login extends Component {
           <Text>SakuraGo</Text>
         </View>
         <View className="loginbtn">
-          <AtButton type='primary' size='normal' circle={true} onClick={this.onMpLoginClick}>
+          <AtButton type='primary' size='normal' onClick={this.onMpLoginClick}>
             <View className="loginbtn-inner">
               <AtIcon value='star' size='20' color='#fff'></AtIcon>
               <Text className="loginbtn-text">微信授权登录</Text>

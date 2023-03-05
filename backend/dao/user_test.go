@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/li-zeyuan/CSEIdiom/backend/testdata"
 	"github.com/li-zeyuan/common/model"
 	"github.com/li-zeyuan/common/sequence"
 	"github.com/stretchr/testify/assert"
@@ -11,7 +12,7 @@ import (
 )
 
 func TestGetByOpenid(t *testing.T) {
-	err := InitDao()
+	err := testdata.InitServer()
 	assert.Nil(t, err)
 
 	u := User{}

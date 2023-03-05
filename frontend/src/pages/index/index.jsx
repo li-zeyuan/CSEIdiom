@@ -1,22 +1,23 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import  { Component } from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import { IButton } from './button'
 import { Idiom } from './idiom'
+import { Login } from '../login/login'
 
 import './index.scss'
 
+
 export default class Index extends Component {
 
-  componentWillMount () { }
+  componentWillMount() { }
 
-  componentDidMount () { }
+  componentDidMount() { }
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
   config = {
     navigationBarTitleText: '复习'
@@ -26,12 +27,12 @@ export default class Index extends Component {
     console.log('no click')
   }
 
-  render () {
+  render() {
     return (
       <View className='index'>
-        <AtButton type='primary'>按钮文案</AtButton>
         <Idiom />
         <IButton onClick={this.handleButClick} />
+        <Login />
       </View>
     )
   }

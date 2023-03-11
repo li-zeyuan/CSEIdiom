@@ -36,3 +36,17 @@ func (u *User) Save( models []*model.UserProfileTable) error {
 
 	return nil
 }
+
+func (u *User) GetOne(uid int64) (*model.UserProfileTable, error) {
+	m := new(model.UserProfileTable)
+	err := mysqlstore.Db.Table(model.TableNameUserProfile).
+		Where("id = ?", uid).
+		Where(model.DefaultDelCondition).
+		First(m).Error
+	if err != nil {
+		mylogger.Error("get user by uid error: ", zap.Error(err))
+		return nil, err
+	}
+
+	return m, nil
+}

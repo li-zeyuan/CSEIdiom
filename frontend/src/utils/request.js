@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import store from "./store"
 import config from "../config/config"
 
@@ -28,7 +29,7 @@ export default function request(method, url, data) {
 
         Taro.request({
             method: method,
-            url: apiHost,
+            url: apiUrl,
             data: method == 'post' ? data : {},
             header: { 'Authorization': token },
             success: function (res) {

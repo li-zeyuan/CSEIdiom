@@ -17,7 +17,3 @@ func New(cfg *config.Config) {
 		User: &User{},
 	}
 }
-
-func Close() {
-
-}

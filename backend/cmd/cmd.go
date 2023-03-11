@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/li-zeyuan/CSEIdiom/backend/dao"
 	"log"
 	"net/http"
 	"os"
@@ -48,6 +49,8 @@ func run(cmd *cobra.Command, args []string) {
 		log.Fatal("init mysql error: ", err)
 		return
 	}
+
+	dao.New(config.AppCfg)
 
 	go func() {
 		mylogger.Info("government_exam server listen address", zap.String("address", config.AppCfg.ListenAddress))

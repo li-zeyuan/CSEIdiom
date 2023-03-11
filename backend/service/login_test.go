@@ -13,7 +13,7 @@ func TestWeChatLogin(t *testing.T) {
 	assert.Nil(t, err)
 
 	req := &model.WeChatLoginReq{
-		Code: "12343",
+		Code: "063E6lFa1APAVE0wfBIa12tXBP1E6lFF",
 	}
 
 	token, err := WeChatLogin(req)

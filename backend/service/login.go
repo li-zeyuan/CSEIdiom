@@ -14,7 +14,11 @@ import (
 	"gorm.io/gorm"
 )
 
-func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
+var Login = loginService{}
+
+type loginService struct{}
+
+func (l *loginService) WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 	wx := external.NewWechat(config.AppCfg.WxAppId, config.AppCfg.WxSecret)
 	wxSession, err := wx.QueryWxSession(req.Code)
 	if err != nil {
@@ -34,6 +38,7 @@ func WeChatLogin(req *model.WeChatLoginReq) (string, error) {
 		userProfile.Name = fmt.Sprintf("husband_%d", userProfile.ID%1000000)
 		userProfile.Openid = wxSession.OpenId
 		userProfile.SessionKey = wxSession.SessionKey
+		userProfile.StudyNum = model.DefaultStudyNum
 		err = dao.D.User.Save([]*model.UserProfileTable{userProfile})
 		if err != nil {
 			return "", err

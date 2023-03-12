@@ -1,6 +1,9 @@
 import Taro from '@tarojs/taro'
 
 export default {
+    tokenKey: 'token',
+    userProfiltKey: 'user',
+
     set(key, data) {
         console.log('store set', key, data)
         try {

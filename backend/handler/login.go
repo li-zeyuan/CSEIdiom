@@ -9,7 +9,11 @@ import (
 	"github.com/li-zeyuan/common/model"
 )
 
-func WechatLogin(c *gin.Context) {
+var LoginHandler = new(login)
+
+type login struct {}
+
+func (l *login)WechatLogin(c *gin.Context) {
 	apiReq := new(model.WeChatLoginReq)
 	err := httptransfer.ParseBody(c, apiReq)
 	if err != nil {
@@ -17,7 +21,7 @@ func WechatLogin(c *gin.Context) {
 		return
 	}
 
-	token, err := service.WeChatLogin(apiReq)
+	token, err := service.Login.WeChatLogin(apiReq)
 	if err != nil {
 		httptransfer.ErrJSONResp(c,http.StatusInternalServerError, err)
 		return

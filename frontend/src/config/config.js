@@ -2,7 +2,7 @@ export default {
     apiHost: "http://127.0.0.1:17000",
 
     notNeedTokenUrl: [
-        '/api/login/wechat_login',
+        '/api/login/wechat',
         '/api/config/config'
     ],
     skipToLoginCode: [

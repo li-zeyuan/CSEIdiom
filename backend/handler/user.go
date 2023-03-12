@@ -8,7 +8,11 @@ import (
 	"github.com/li-zeyuan/common/httptransfer"
 )
 
-func UserProfile(c *gin.Context) {
+var UserHandler = new(userProfile)
+
+type userProfile struct{}
+
+func (u *userProfile) Detail(c *gin.Context) {
 	uid := httptransfer.GetUid(c)
 	profile, err := service.Profile.Detail(uid)
 	if err != nil {

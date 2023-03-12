@@ -1,22 +1,26 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, uploadFile } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import store from '../../utils/store'
 
 export default class Index extends Component {
   config = {
     navigationBarTitleText: '我的'
   }
 
-  componentWillMount () { }
+  componentWillMount() {
+    const uProfile = store.get(store.userProfiltKey)
+    console.log(uProfile)
+  }
 
-  componentDidMount () { }
+  componentDidMount() {}
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
-  render () {
+  render() {
     return (
       <View className='index'>
         hello mine

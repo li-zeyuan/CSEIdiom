@@ -8,7 +8,7 @@ export default function request(method, url, data) {
     const token = store.get('token')
     if (!config.notNeedTokenUrl.includes(url) && !token) {
         Taro.reLaunch({
-            url: '/pages/login/login',
+            url: '/pages/login/index',
         })
     }
 
@@ -35,7 +35,7 @@ export default function request(method, url, data) {
             success: function (res) {
                 if (config.skipToLoginCode.includes(res.code)) {
                     Taro.reLaunch({
-                        url: '/pages/login/login',
+                        url: '/pages/login/index',
                     })
                 }
 

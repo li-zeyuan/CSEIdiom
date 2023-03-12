@@ -1,6 +1,6 @@
-import Taro, { Component, uploadFile } from '@tarojs/taro'
+import { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import store from '../../utils/store'
+import { StoreGet } from '../../utils/store'
 
 export default class Index extends Component {
   config = {
@@ -8,11 +8,15 @@ export default class Index extends Component {
   }
 
   componentWillMount() {
-    const uProfile = store.get(store.userProfiltKey)
-    console.log(uProfile)
+    debugger
+    // const uProfile = StoreGet('user')
+    // console.log(uProfile)
+    console.log(111)
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
 
   componentWillUnmount() { }
 

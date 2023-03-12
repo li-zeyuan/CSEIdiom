@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { AtButton, AtIcon } from 'taro-ui'
 import { userProfile, wxLogin } from '../../api/api'
-import store from '../../utils/store'
+import { StoreSet, TokenKey, UserProfiltKey } from '../../utils/store'
 import { View, Text } from '@tarojs/components'
 
 export class Login extends Component {
@@ -34,13 +34,13 @@ export class Login extends Component {
           wxLogin({ code: res.code })
             .then((res) => {
               if (res.code === 0) {
-                store.set(store.tokenKey, res.data.token)
+                StoreSet(TokenKey, res.data.token)
 
                 // 获取个人信息
                 userProfile({})
                   .then((userProfileRes) => {
                     if (userProfileRes.code === 0) {
-                      store.set(store.userProfiltKey, res.data)
+                      StoreSet(UserProfiltKey, res.data)
                     }
                   })
                   .catch((userProfileFial) => {

@@ -1,11 +1,11 @@
 import Taro from '@tarojs/taro'
-import store from "./store"
+import { StoreGet, TokenKey } from "./store"
 import config from "../config/config"
 
 const apiHost = config.apiHost
 
 export default function request(method, url, data) {
-    const token = store.get('token')
+    const token = StoreGet(TokenKey)
     if (!config.notNeedTokenUrl.includes(url) && !token) {
         Taro.reLaunch({
             url: '/pages/login/index',
